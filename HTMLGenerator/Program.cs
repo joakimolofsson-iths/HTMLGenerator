@@ -4,10 +4,10 @@
     {
         static void Main(string[] args)
         {
-            HtmlGenerator();
+            /*HtmlGenerator();*/
         }
 
-        static void HtmlGenerator()
+        /*static void HtmlGenerator()
         {
             Console.WriteLine("Name of the class:");
             string className = HandleNullAndEmpty(Console.ReadLine());
@@ -43,9 +43,9 @@
                 $"</body> \n" +
                 $"</html>"
             );
-        }
+        }*/
 
-        static string HandleNullAndEmpty(string? userInput)
+        /*static string HandleNullAndEmpty(string? userInput)
         {
             while(string.IsNullOrWhiteSpace(userInput))
             {
@@ -54,6 +54,6 @@
             }
 
             return userInput;
-        }
+        }*/
     }
 }
