@@ -6,52 +6,77 @@ namespace HTMLGenerator
     {
         static void Main(string[] args)
         {
-            WebsiteGenerator myWebsite = new WebsiteGenerator();
-            myWebsite.HandleInput();
-            myWebsite.GenerateHTML();
+            WebsiteGenerator website1 = new WebsiteGenerator(".Net");
+            website1.AddCourses(" C#", "daTAbaser", "WebbuTVeCkling ", "clean Code ");
+            website1.AddMessages(" Möte på måndag", "diskA Koppar", "Sal byte på tisdag ", "Clean Code lektion");
+            website1.ShowHTML();
+
+            WebsiteGenerator website2 = new WebsiteGenerator("Javscript");
+            website2.AddCourses(" Javascript", "CSS", "WebbuTVeCkling ", "Ramverk ");
+            website2.AddMessages(" Möte på tisdag", "CSS style", "Sal byte på tisdag ", "Clean Code lektion tillsammans med .Net");
+            website2.ShowHTML();
         }
 
         class WebsiteGenerator
         {
-            public string className;
-            public List<string> messages = new List<string>();
-            public string[] courses = { " C#", "daTAbaser", "WebbuTVeCkling ", "clean Code " };
+            public string ClassName { get; }
+            private List<string> _courseList;
+            private List<string> _messageList;
 
-            public void HandleInput()
+            public WebsiteGenerator(string className)
             {
-                Console.WriteLine("What is the name of the class?");
-                className = HandleNullAndEmpty(Console.ReadLine());
+                ClassName = className;
+                _courseList = new List<string>();
+                _messageList = new List<string>();
+            }
 
-                int msgAmount = 3;
-                for (int i = 0; i < msgAmount; i++)
+            public void AddCourses(params string[] courses)
+            {
+                foreach (string course in courses)
                 {
-                    Console.WriteLine($"Type message {i + 1} to the class:");
-                    messages.Add($"{HandleNullAndEmpty(Console.ReadLine())}");
+                    _courseList.Add(HandleNullAndEmpty(course));
                 }
             }
 
-            public void GenerateHTML()
+            public void AddMessages(params string[] messages)
+            {
+                foreach (string message in messages)
+                {
+                    _messageList.Add(HandleNullAndEmpty(message));
+                }
+            }
+
+            public void ShowHTML()
             {
                 Console.WriteLine(
                     $"\n<!DOCTYPE html> \n" +
                     $"<html> \n" +
                     $"<body> \n" +
-                    $"<h1>Välkomna {className}!</h1>"
+                    $"<h1>Välkomna {ClassName}!</h1>"
                 );
-                for (int i = 0; i < messages.Count; i++)
+
+                for (int i = 0; i < _messageList.Count; i++)
                 {
-                    Console.WriteLine($"<p>Meddelande {i + 1}: {messages[i]}</p>");
+                    Console.WriteLine($"<p>Meddelande {i + 1}: {StyleString(_messageList[i])}</p>");
                 };
+
+                Console.WriteLine($"<main>");
+                
+                for (int i = 0; i < _courseList.Count; i++)
+                {
+                    Console.WriteLine($"<p>Kurs om {StyleString(_courseList[i])}</p>");
+                };
+
                 Console.WriteLine(
-                    $"<main> \n" +
-                    $"<p>Kurs om {char.ToUpper(courses[0].Trim().ToLower()[0]) + courses[0].Trim().ToLower().Substring(1)}</p> \n" +
-                    $"<p>Kurs om {char.ToUpper(courses[1].Trim().ToLower()[0]) + courses[1].Trim().ToLower().Substring(1)}</p> \n" +
-                    $"<p>Kurs om {char.ToUpper(courses[2].Trim().ToLower()[0]) + courses[2].Trim().ToLower().Substring(1)}</p> \n" +
-                    $"<p>Kurs om {char.ToUpper(courses[3].Trim().ToLower()[0]) + courses[3].Trim().ToLower().Substring(1)}</p> \n" +
                     $"</main> \n" +
                     $"</body> \n" +
                     $"</html>"
                 );
+            }
+
+            public string StyleString(string input)
+            {
+                return char.ToUpper(input.Trim().ToLower()[0]) + input.Trim().ToLower().Substring(1);
             }
 
             static string HandleNullAndEmpty(string? userInput)
