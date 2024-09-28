@@ -10,11 +10,6 @@ namespace HTMLGenerator
             website1.AddCourses(" C#", "daTAbaser", "WebbuTVeCkling ", "clean Code ");
             website1.AddMessages(" Möte på måndag", "diskA Koppar", "Sal byte på tisdag ", "Clean Code lektion");
             website1.ShowHTML();
-
-            WebsiteGenerator website2 = new WebsiteGenerator("Javscript");
-            website2.AddCourses(" Javascript", "CSS", "WebbuTVeCkling ", "Ramverk ");
-            website2.AddMessages(" Möte på tisdag", "CSS style", "Sal byte på tisdag ", "Clean Code lektion tillsammans med .Net");
-            website2.ShowHTML();
         }
 
         class WebsiteGenerator
