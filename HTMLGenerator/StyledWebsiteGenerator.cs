@@ -8,17 +8,23 @@ namespace HTMLGenerator
 {
     internal class StyledWebsiteGenerator : WebsiteGenerator
     {
-        private string PrimaryColor { get; }
+        private string _color;
 
-        public StyledWebsiteGenerator(string className, string primaryColor)
+        public StyledWebsiteGenerator(string className)
             : base(className)
         {
-            PrimaryColor = primaryColor;
+            
+        }
+
+        public string Color
+        {
+            get => _color;
+            set => _color = InputUtilities.HandleNullAndEmpty(value);
         }
 
         protected override void PrintHead(string color)
         {
-            base.PrintHead(PrimaryColor.ToLower());
+            base.PrintHead(_color.ToLower());
         }
     }
 }

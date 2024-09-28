@@ -23,7 +23,7 @@ namespace HTMLGenerator
         {
             foreach (string course in courses)
             {
-                _courseList.Add(HandleNullAndEmpty(course));
+                _courseList.Add(InputUtilities.HandleNullAndEmpty(course));
             }
         }
 
@@ -31,7 +31,7 @@ namespace HTMLGenerator
         {
             foreach (string message in messages)
             {
-                _messageList.Add(HandleNullAndEmpty(message));
+                _messageList.Add(InputUtilities.HandleNullAndEmpty(message));
             }
         }
 
@@ -76,17 +76,6 @@ namespace HTMLGenerator
         public string StyleString(string input)
         {
             return char.ToUpper(input.Trim().ToLower()[0]) + input.Trim().ToLower().Substring(1);
-        }
-
-        static string HandleNullAndEmpty(string? userInput)
-        {
-            while (string.IsNullOrWhiteSpace(userInput))
-            {
-                Console.WriteLine("Invalid input, try something else!");
-                userInput = Console.ReadLine();
-            }
-
-            return userInput;
         }
     }
 }
