@@ -10,10 +10,10 @@ namespace HTMLGenerator
     {
         private string _color;
 
-        public StyledWebsiteGenerator(string className)
+        public StyledWebsiteGenerator(string className, string color)
             : base(className)
         {
-            
+            _color = color;
         }
 
         public string Color
