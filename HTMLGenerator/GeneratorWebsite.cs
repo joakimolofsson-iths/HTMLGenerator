@@ -41,7 +41,8 @@ namespace HTMLGenerator
                 "<html> \n" +
                 "<head> \n" +
                 "<style> \n" +
-                $"p {{ color: {color} }} \n" +
+                "* {margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif;}" +
+                $"p {{font-size: 16px; color: {color} }} \n" +
                 "</style> \n" +
                 "</head> \n" +
                 "<body> \n" +
