@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace HTMLGenerator
 {
-    class WebsiteGenerator : Generator
+    class GeneratorWebsite : Generator
     {
         public string ClassName { get; private set; }
         private List<string> _courseList;
         private List<string> _messageList;
 
-        public WebsiteGenerator(string className)
+        public GeneratorWebsite(string className)
         {
             ClassName = className;
             _courseList = new List<string>();
@@ -23,7 +23,7 @@ namespace HTMLGenerator
         {
             foreach (string course in courses)
             {
-                _courseList.Add(InputUtilities.HandleNullAndEmpty(course));
+                _courseList.Add(UtilitiesInput.HandleNullAndEmpty(course));
             }
         }
 
@@ -31,7 +31,7 @@ namespace HTMLGenerator
         {
             foreach (string message in messages)
             {
-                _messageList.Add(InputUtilities.HandleNullAndEmpty(message));
+                _messageList.Add(UtilitiesInput.HandleNullAndEmpty(message));
             }
         }
 

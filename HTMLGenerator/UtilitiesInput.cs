@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HTMLGenerator
 {
-    internal static class InputUtilities
+    internal static class UtilitiesInput
     {
         internal static string HandleNullAndEmpty(string? userInput)
         {

@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace HTMLGenerator
 {
-    internal class StyledWebsiteGenerator : WebsiteGenerator
+    internal class GeneratorWebsiteStyled : GeneratorWebsite
     {
         private string _color;
 
-        public StyledWebsiteGenerator(string className, string color)
+        public GeneratorWebsiteStyled(string className, string color)
             : base(className)
         {
             _color = color;
@@ -19,7 +19,7 @@ namespace HTMLGenerator
         public string Color
         {
             get => _color;
-            set => _color = InputUtilities.HandleNullAndEmpty(value);
+            set => _color = UtilitiesInput.HandleNullAndEmpty(value);
         }
 
         protected override void PrintHead(string color)
