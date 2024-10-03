@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace HTMLGenerator
 {
-    class WebsiteGenerator
+    class WebsiteGenerator : Generator
     {
-        public string ClassName { get; }
+        public string ClassName { get; private set; }
         private List<string> _courseList;
         private List<string> _messageList;
 
@@ -50,7 +50,7 @@ namespace HTMLGenerator
             );
         }
 
-        public void ShowHTML()
+        public override void ShowHTML()
         {
             PrintHead("black");
 
@@ -73,7 +73,7 @@ namespace HTMLGenerator
             );
         }
 
-        public string StyleString(string input)
+        protected string StyleString(string input)
         {
             return char.ToUpper(input.Trim().ToLower()[0]) + input.Trim().ToLower().Substring(1);
         }
