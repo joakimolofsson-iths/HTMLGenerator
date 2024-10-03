@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace HTMLGenerator
+﻿namespace HTMLGenerator
 {
     internal class Program
     {
@@ -11,10 +9,12 @@ namespace HTMLGenerator
             website1.AddMessages(" Möte på måndag", "diskA Koppar", "Sal byte på tisdag ", "Clean Code lektion");
             website1.ShowHTML();
 
-            GeneratorWebsiteStyled website2 = new GeneratorWebsiteStyled(".Net", "Red");
+            GeneratorWebsiteStyled website2 = new GeneratorWebsiteStyled(".Net", "Indigo");
             website2.AddCourses(" C#", "daTAbaser", "WebbuTVeCkling ", "clean Code ");
             website2.AddMessages(" Möte på måndag", "diskA Koppar", "Sal byte på tisdag ", "Clean Code lektion");
-            website2.ShowHTML();            
+            website2.ShowHTML();
+
+            Utilities.DisplayHtmlInBrowser("HTML Generator", website2.ShowHTML());
         }
     }
 }

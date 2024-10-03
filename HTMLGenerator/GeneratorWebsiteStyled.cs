@@ -19,12 +19,12 @@ namespace HTMLGenerator
         public string Color
         {
             get => _color;
-            set => _color = UtilitiesInput.HandleNullAndEmpty(value);
+            set => _color = Utilities.HandleNullAndEmpty(value);
         }
 
-        protected override void PrintHead(string color)
+        protected override string PrintHead(string color)
         {
-            base.PrintHead(_color.ToLower());
+            return base.PrintHead(_color.ToLower());
         }
     }
 }

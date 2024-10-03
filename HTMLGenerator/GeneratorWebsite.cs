@@ -23,7 +23,7 @@ namespace HTMLGenerator
         {
             foreach (string course in courses)
             {
-                _courseList.Add(UtilitiesInput.HandleNullAndEmpty(course));
+                _courseList.Add(Utilities.HandleNullAndEmpty(course));
             }
         }
 
@@ -31,46 +31,48 @@ namespace HTMLGenerator
         {
             foreach (string message in messages)
             {
-                _messageList.Add(UtilitiesInput.HandleNullAndEmpty(message));
+                _messageList.Add(Utilities.HandleNullAndEmpty(message));
             }
         }
 
-        protected virtual void PrintHead(string color)
+        protected virtual string PrintHead(string color)
         {
-            Console.WriteLine(
-                "\n<!DOCTYPE html> \n" +
+            return "\n<!DOCTYPE html> \n" +
                 "<html> \n" +
                 "<head> \n" +
                 "<style> \n" +
-                $"p {{ color: \"{color}\" }} \n" +
+                $"p {{ color: {color} }} \n" +
                 "</style> \n" +
                 "</head> \n" +
                 "<body> \n" +
-                $"<h1>Välkomna {ClassName}!</h1>"
-            );
+                $"<h1>Välkomna {ClassName}!</h1>";
         }
 
-        public override void ShowHTML()
+        public override string ShowHTML()
         {
-            PrintHead("black");
+            StringBuilder html = new StringBuilder();
+
+            html.AppendLine(PrintHead("black"));            
 
             for (int i = 0; i < _messageList.Count; i++)
             {
-                Console.WriteLine($"<p>Meddelande {i + 1}: {StyleString(_messageList[i])}</p>");
+                html.AppendLine($"<p>Meddelande {i + 1}: {StyleString(_messageList[i])}</p>");
             };
 
-            Console.WriteLine($"<main>");
+            html.AppendLine($"<main>");
 
             for (int i = 0; i < _courseList.Count; i++)
             {
-                Console.WriteLine($"<p>Kurs om {StyleString(_courseList[i])}</p>");
+                html.AppendLine($"<p>Kurs om {StyleString(_courseList[i])}</p>");
             };
 
-            Console.WriteLine(
+            html.AppendLine(
                 "</main> \n" +
                 "</body> \n" +
                 "</html>"
             );
+
+            return html.ToString();
         }
 
         protected string StyleString(string input)

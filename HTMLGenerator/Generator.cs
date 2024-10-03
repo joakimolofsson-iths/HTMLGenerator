@@ -8,6 +8,6 @@ namespace HTMLGenerator
 {
     internal abstract class Generator
     {
-        public abstract void ShowHTML();
+        public abstract string ShowHTML();
     }
 }
