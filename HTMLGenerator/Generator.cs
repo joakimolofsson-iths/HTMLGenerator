@@ -6,8 +6,18 @@ using System.Threading.Tasks;
 
 namespace HTMLGenerator
 {
-    internal abstract class Generator
+    internal class Generator
     {
-        public abstract string ShowHTML();
+        private IWebsite _website;
+
+        public Generator(IWebsite website)
+        {
+            _website = website;
+        }
+
+        public void RenderHtml()
+        {
+            Console.WriteLine(_website.PutTogetherHtmlElements());
+        }
     }
 }
