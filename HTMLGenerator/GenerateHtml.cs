@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace HTMLGenerator
 {
-    internal class Generator
+    internal class GenerateHtml
     {
-        private IWebsite _website;
+        private IHtml _website;
 
-        public Generator(IWebsite website)
+        public GenerateHtml(IHtml website)
         {
             _website = website;
         }

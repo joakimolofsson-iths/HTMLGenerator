@@ -20,13 +20,13 @@ namespace HTMLGenerator
             return userInput;
         }
 
-        /// <summary>
-        /// Save html content to a temporary file and open it in a browser
-        /// </summary>
-        /// <param name="pageTitle">Page-title is used as filename</param>
-        /// <param name="htmlContent">Sets the html for the file that is to be display</param>
-        /// <param name="openFile">Opens the file in browser. True is default</param>
-        /// <param name="webbrowserName">Chrome is default but can be set to any webbrowser. Don't include .exe in the name<
+        /*<summary>
+        Save html content to a temporary file and open it in a browser
+        </summary>
+        <param name="pageTitle">Page-title is used as filename</param>
+        <param name="htmlContent">Sets the html for the file that is to be display</param>
+        <param name="openFile">Opens the file in browser. True is default</param>
+        <param name="webbrowserName">Chrome is default but can be set to any webbrowser. Don't include .exe in the name<*/
         public static void DisplayHtmlInBrowser(string pageTitle, string htmlContent, bool openFile = true, string webbrowserName = "Chrome")
         {
             pageTitle = pageTitle.Replace(" ", "_");

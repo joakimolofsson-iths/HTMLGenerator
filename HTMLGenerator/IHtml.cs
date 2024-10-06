@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace HTMLGenerator
 {
-    internal interface IWebsite
+    internal interface IHtml
     {
         void AddCourses(params string[] courses);
         void AddMessages(params string[] messages);
-        string AddStyle(string color);
+        string AddStyling(string color);
         string PutTogetherHtmlElements();
     }
 }

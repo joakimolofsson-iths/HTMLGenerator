@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 
 namespace HTMLGenerator
 {
-    class Website : IWebsite
+    class Html : IHtml
     {
         public string ClassName { get; private set; }
+        public virtual string Color { get; private set; } = "black";
+
         private List<string> _courseList;
         private List<string> _messageList;
 
-        public Website(string className)
+        public Html(string className)
         {
             ClassName = className;
             _courseList = new List<string>();
@@ -29,57 +31,42 @@ namespace HTMLGenerator
             _messageList.AddRange(messages.Select(message => Utilities.HandleNullAndEmpty(message)));
         }
 
-        public virtual string AddStyle(string color = "black")
+        public virtual string AddStyling(string color)
         {
-            return "<style>\n" +
-                "* {margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif;}\n" +
-                $"p {{font-size: 16px; color: {color}}}\n" +
-                "</style>";
+            Color = Utilities.HandleNullAndEmpty(color.ToLower());
+            return "* {margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif;}\n" +
+                $"p {{font-size: 16px; color: {Color}}}";
         }
 
         public string PutTogetherHtmlElements()
         {
             StringBuilder html = new StringBuilder();
 
-            html.AppendLine(
-                "<!DOCTYPE html> \n" +
-                "<html> \n" +
-                "<head>"
-            );
-
-            html.AppendLine(
-                AddStyle()
-            );
-
-            html.AppendLine(
-                "</head> \n" +
-                "<body> \n" +
-                $"<h1>Välkomna {ClassName}!</h1>"
-            );
+            html.AppendLine("<!DOCTYPE html>");
+            html.AppendLine("<html>");
+            html.AppendLine("<head>");
+            html.AppendLine("<style>");
+            html.AppendLine(AddStyling(Color));
+            html.AppendLine("</style>");
+            html.AppendLine("</head>");
+            html.AppendLine("<body>");
+            html.AppendLine($"<h1>Välkomna {ClassName}!</h1>");
 
             for (int i = 0; i < _messageList.Count; i++)
             {
-                html.AppendLine(
-                    $"<p>Meddelande {i + 1}: {StyleString(_messageList[i])}</p>"
-                );
+                html.AppendLine($"<p>Meddelande {i + 1}: {StyleString(_messageList[i])}</p>");
             };
 
-            html.AppendLine(
-                "<main>"
-            );
+            html.AppendLine("<main>");
 
             for (int i = 0; i < _courseList.Count; i++)
             {
-                html.AppendLine(
-                    $"<p>Kurs om {StyleString(_courseList[i])}</p>"
-                );
+                html.AppendLine($"<p>Kurs om {StyleString(_courseList[i])}</p>");
             };
 
-            html.AppendLine(
-                "</main> \n" +
-                "</body> \n" +
-                "</html>"
-            );
+            html.AppendLine("</main>");
+            html.AppendLine("</body>");
+            html.AppendLine("</html>");
 
             return html.ToString();
         }
