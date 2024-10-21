@@ -1,2 +1,2 @@
 # HTMLGenerator
-HTML Generator - Code exercise
+HTML Generator - Project
